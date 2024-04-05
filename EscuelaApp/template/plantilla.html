@@ -1,0 +1,24 @@
+{% extends "padre.html" %}
+{% load static %}
+{% block title %}Inicio - EscuelaApp{% endblock %}
+
+{% block masthead_title %}Home de EscuelaApp{% endblock %}
+{% block content %}
+    <div class="historia-escuela">
+        <h2>Historia de la Escuela</h2>
+        <p>{{ historia_escuela }}</p>
+    </div>
+    <div class="registro-escuela">
+        <h2>Registro de la Escuela</h2>
+        <form action="{% url 'registro_escuela' %}" method="post">
+            {% csrf_token %}
+            {% csrf_protect %}
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required>
+            
+            <button type="submit">Registrarse</button>
+        </form>
+    </div>
+{% endblock %}

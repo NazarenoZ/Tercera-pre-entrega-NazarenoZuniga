@@ -1,0 +1,49 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block title %}Alumnos - EscuelaApp{% endblock %}
+
+{% block masthead_title %}Alumnos de EscuelaApp{% endblock %}
+{% block contenido %}
+    <main class="container">
+        <h1 class="text-xl-center title">Alumnos</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Curso</th>
+                    <th>Edad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alumno in alumnos %}
+                <tr>
+                    <td>{{ alumno.nombre }}</td>
+                    <td>{{ alumno.apellido }}</td>
+                    <td>{{ alumno.curso }}</td>
+                    <td>{{alumno.edad}}</td>
+                    
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="agregar-alumno">
+            <h2>Agregar Alumno</h2>
+            <form action="{% url 'agregar_alumno' %}" method="post">
+                {% csrf_token %}
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" required>
+                <label for="curso">Curso:</label>
+                <input type="text" id="curso" name="curso" required>
+                <label for="edad">Edad:</label>
+                <input type="text" id="edad" name="edad" required>
+                <button type="submit">Agregar</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}

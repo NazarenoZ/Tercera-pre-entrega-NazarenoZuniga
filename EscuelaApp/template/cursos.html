@@ -1,0 +1,34 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block title %}Cursos - EscuelaApp{% endblock %}
+
+{% block masthead_title %}Cursos de EscuelaApp{% endblock %}
+{% block contenido %}
+<main class="container">
+    <h1 class="text-xl-center title"> Cursos de EscuelaApp </h1>
+
+    <a href="{% url 'alta_curso' %}" class="btn btn-primary btn-sm">Nuevo Curso</a>
+    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Camada</th>
+                </tr>            
+            </thead>
+            <tbody>
+                {% for curso in cursos %}
+                <tr>
+                    <td>{{ curso.id }}</td>
+                    <td>{{ curso.nombre }}</td>
+                    <td>{{ curso.camada }}</td>
+                    <td><a href="{% url 'elimina_curso' curso.id %}" class="btn btn-danger btn-sm">BORRAR</a></td>
+                    <td><a href="{% url 'editar_curso' curso.id %}" class="btn btn-warning btn-sm">EDITAR</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

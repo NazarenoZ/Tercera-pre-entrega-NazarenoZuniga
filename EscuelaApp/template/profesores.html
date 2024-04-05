@@ -1,0 +1,47 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block title %}Profesores - EscuelaApp{% endblock %}
+
+{% block masthead_title %}Profesores de EscuelaApp{% endblock %}
+{% block contenido %}
+    <main class="container">
+        <h1 class="text-xl-center title">Profesores</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Curso</th>
+                    <th>Especialidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for profesor in profesores %}
+                <tr>
+                    <td>{{ profesor.nombre }}</td>
+                    <td>{{ profesor.apellido }}</td>
+                    <td>{{ profesor.curso }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="agregar-profesor">
+            <h2>Agregar Profesor</h2>
+            <form action="{% url 'agregar_profesor' %}" method="post">
+                {% csrf_token %}
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" required>
+                <label for="curso">Curso:</label>
+                <input type="text" id="curso" name="curso" required>
+                <label for="especialidad">Especialidad</label>
+                <input type="text" id="especialidad" name="especialidad" required>
+                
+                <button type="submit">Agregar</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}

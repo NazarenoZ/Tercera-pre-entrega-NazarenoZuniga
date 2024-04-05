@@ -1,0 +1,28 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block title %}Cursos - EscuelaApp{% endblock %}
+
+{% block masthead_title %}Cursos de EscuelaApp{% endblock %}
+{% block contenido %}
+<div class="mt-4">
+    <h2>Agregar Curso</h2>
+        <form action="{% url 'alta_curso' %}" method="POST">
+            {% csrf_token %}
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="camada">Camada:</label>
+            <input type="text" id="camada" name="camada">
+            <label for="fecha_inicio">Fecha de Inicio:</label>
+            <input type="date" id="fecha_inicio" name="fecha_inicio" required>
+            <label for="fecha_fin">Fecha de Fin:</label>
+            <input type="date" id="fecha_fin" name="fecha_fin" required>
+            <button type="submit">Agregar Curso</button>
+        </form>
+</div>
+    
+
+
+
+{% endblock %}
